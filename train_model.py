@@ -36,7 +36,10 @@ val_generator = train_datagen.flow_from_directory(
     subset = 'validation'
 )
 
-model.fit(train_generator, epochs=10, validation_data=val_generator)
+history = model.fit(train_generator, epochs=10, validation_data=val_generator)
+
+print("Final Training Accuracy:", history.history['accuracy'][-1])
+print("Final Validation Accuracy:", history.history['val_accuracy'][-1])
 
 model.save('models/cnnCat2.h5')
 
